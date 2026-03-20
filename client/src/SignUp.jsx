@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {  useState } from 'react';
 import './App.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -44,9 +44,9 @@ function SignUp() {
                                 </div>
 
                                 <form onSubmit={handleSignUp}>
-                                    <div className="mb-3">
+                                     <div className="mb-3">
                                         <label htmlFor="email" className="form-label">
-                                            Name
+                                           Name
                                         </label>
                                         <input
                                             type="text"
