@@ -7,10 +7,11 @@ import Profile from './Profile'
 export default function App() {
   return (
     <Routes>
-     <Route path="/" element={<Login />} />
-     <Route path="/login" element={<Login />} />
-     <Route path="/signup" element={<SignUp />}/>
-     <Route path='/users' element={<Profile />}/>
+      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignUp />}/>
+      <Route path='/users' element={<Profile />}/>
+      <Route path="*" element={<Login />} />  {/* fallback */}
     </Routes>
   )
 }
