@@ -3,7 +3,7 @@ name: Deploy React App
 on:
   push:
     branches:
-      - main   # runs when you push code to main branch
+      - main
 
 permissions:
   contents: read
@@ -16,10 +16,10 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4   # updated
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4   # updated
         with:
           node-version: 18
 
@@ -30,9 +30,9 @@ jobs:
         run: npm run build
 
       - name: Upload Build Files
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3   # updated
         with:
-          path: ./build   # React build folder
+          path: ./build
 
   deploy:
     needs: build
@@ -40,4 +40,4 @@ jobs:
 
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4   # updated
