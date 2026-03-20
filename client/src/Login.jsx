@@ -12,7 +12,7 @@ function Login() {
         e.preventDefault();
 
         try {
-            const res = await fetch("https://jwt-login-mu.vercel.app/api/login", {
+            const res = await fetch("https://jwt-login-mu.vercel.app/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
