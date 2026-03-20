@@ -13,7 +13,7 @@ async function connectDb() {
     return;
   }
 
-  await mongoose.connect(process.env.MONGO_URI, { dbName: "admin" });
+  await mongoose.connect(process.env.MONGO_URI);
 }
 
 const userSchema = new mongoose.Schema({
