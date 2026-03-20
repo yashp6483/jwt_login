@@ -13,7 +13,7 @@ export default function Profile() {
       const token = localStorage.getItem('token');
 
       try {
-        const res = await fetch('https://jwt-login-mu.vercel.app/users', {
+        const res = await fetch("https://jwt-login-mu.vercel.app/api/users", {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
