@@ -5,11 +5,13 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 app.use(cors());
-const secretKey = "secretKey";
+const SECRET_KEY = process.env.JWT_SECRET;
 
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://yashp4710_db_user:yash9171patel@cluster0.mongodb.net/admin").then(() => console.log("MONGODB CONNECTED.")).catch(err => console.log(err));
+mongoose.connect(process.env.MONGO_URI, { dbName: "admin" })
+  .then(() => console.log("MONGODB CONNECTED."))
+  .catch(err => console.log(err));
 
 const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
@@ -34,7 +36,7 @@ app.post("/login", async (req, res) => {
     if (!isPasswordValid) {
         return res.status(401).json({ message: "Invalid credentials" });
     }
-    jwt.sign({ userId: user._id }, secretKey, { expiresIn: "1h" }, (err, token) => {
+    jwt.sign({ userId: user._id }, SECRET_KEY, { expiresIn: "1h" }, (err, token) => {
         if (err) {
             return res.status(500).json({ message: "token signing fail" });
         }
@@ -68,7 +70,7 @@ const verifyToken = (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (!authHeader) return res.status(403).json({ message: "Token required" });
     const token = authHeader.split(" ")[1];
-    jwt.verify(token, secretKey, (err, decoded) => {
+    jwt.verify(token, SECRET_KEY, (err, decoded) => {
         if (err) return res.status(401).json({ message: "Invalid token" });
         req.userId = decoded.userId;
         next();
