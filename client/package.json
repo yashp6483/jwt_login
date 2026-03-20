@@ -2,6 +2,7 @@
   "name": "login",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://yashp6483.github.io/jwt_login"
   "proxy": "http://localhost:5000",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
