@@ -24,17 +24,17 @@ jobs:
           node-version: 18
 
       - name: Install Dependencies
-        working-directory: ./frontend   # ✅ ADD THIS
+        working-directory: ./client   # ✅ FIXED
         run: npm install
 
       - name: Build React App
-        working-directory: ./frontend   # ✅ ADD THIS
+        working-directory: ./client   # ✅ FIXED
         run: npm run build
 
       - name: Upload Build Files
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./frontend/build   # ✅ FIX PATH
+          path: ./client/build   # ✅ FIXED
 
   deploy:
     needs: build
