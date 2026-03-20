@@ -41,10 +41,6 @@ module.exports = async function handler(req, res) {
   if (req.method === "OPTIONS") return res.status(200).end();
 
   try {
-    if (!SECRET_KEY) {
-      return res.status(500).json({ message: "JWT_SECRET is not set" });
-    }
-
     await connectDb();
 
     const method = req.method;
@@ -67,6 +63,10 @@ module.exports = async function handler(req, res) {
     }
 
     if (route === "/login" && method === "POST") {
+      if (!SECRET_KEY) {
+        return res.status(500).json({ message: "JWT_SECRET is not set" });
+      }
+
       const { email, password } = body;
       if (!email || !password) {
         return res.status(400).json({ message: "Email/password required" });
@@ -83,6 +83,10 @@ module.exports = async function handler(req, res) {
     }
 
     if (route === "/users" && method === "GET") {
+      if (!SECRET_KEY) {
+        return res.status(500).json({ message: "JWT_SECRET is not set" });
+      }
+
       const auth = req.headers.authorization;
       if (!auth) return res.status(403).json({ message: "Token required" });
 
@@ -99,6 +103,6 @@ module.exports = async function handler(req, res) {
     return res.status(404).json({ message: "Route not found" });
   } catch (error) {
     console.error("API error:", error);
-    return res.status(500).json({ message: "Internal server error" });
+    return res.status(500).json({ message: error.message || "Internal server error" });
   }
 };
