@@ -9,7 +9,7 @@ const secretKey = "secretKey";
 
 app.use(express.json());
 
-mongoose.connect("mongodb://localhost:27017/admin").then(() => console.log("MONGODB CONNECTED.")).catch(err => console.log(err));
+mongoose.connect("mongodb+srv://yashp4710_db_user:yash9171patel@cluster0.mongodb.net/admin").then(() => console.log("MONGODB CONNECTED.")).catch(err => console.log(err));
 
 const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
